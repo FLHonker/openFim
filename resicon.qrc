@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>icon/close.png</file>
+        <file>icon/close2.png</file>
+        <file>icon/copy.png</file>
+        <file>icon/exit.png</file>
+        <file>icon/new.png</file>
+        <file>icon/open.png</file>
+        <file>icon/search.png</file>
+        <file>icon/shear.png</file>
+        <file>icon/team.png</file>
+        <file>icon/version.png</file>
+        <file>icon/redo.png</file>
+        <file>icon/paste.png</file>
+        <file>icon/save.png</file>
+        <file>icon/saveas.png</file>
+        <file>icon/help.png</file>
+        <file>icon/hello_txt_64px.ico</file>
+    </qresource>
+</RCC>
