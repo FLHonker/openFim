@@ -2,6 +2,7 @@
 #define MAINWIN_H
 
 #include <QMainWindow>
+#include <QPushButton>
 #include <QLineEdit>
 #include <QLabel>
 
@@ -32,14 +33,21 @@ private slots:
     void on_actionSearch_triggered();
     void do_cursorChanged(); //获取光标位置信息
 
+    void on_actionAbout_B_triggered();
+
+    void on_actionHelp_P_triggered();
+
 private:
     Ui::MainWin *m_ui;
     bool isSaved;    //文件是否已经保存
     QString curFile;  //当前文件名
     QLineEdit *find_textLineEdit;    //声明一个行编辑器,用于输入要查找的内容
+    QStatusBar *bar;   //状态栏
     //声明两个标签对象
     QLabel *first_statusLabel;
     QLabel *second_statusLabel;
+    QDialog *findDlg;     //查找对话框
+    QPushButton *findBtn;  //查找按钮
 
     void do_file_New();    //新建文件
     void do_file_SaveOrNot();  //修改过的文件是否保存

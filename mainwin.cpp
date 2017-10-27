@@ -4,7 +4,6 @@
 #include <QFileDialog>
 #include <QFile>
 #include <QTextStream>
-#include <QPushButton>
 #include <QVBoxLayout>
 #include <QStatusBar>
 
@@ -13,6 +12,7 @@ MainWin::MainWin(QWidget *parent) :
     m_ui(new Ui::MainWin)
 {
     m_ui->setupUi(this);
+    //setWindowIcon(QIcon("icon/hello_txt_64px.ico"));
     // init
     isSaved = false;
     curFile = tr("untitled.txt");
@@ -128,7 +128,7 @@ void MainWin::show_findText()
 // 初始化状态栏
 void MainWin::init_statusBar()
 {
-    QStatusBar *bar = m_ui->statusBar;   //获取状态栏
+    bar = m_ui->statusBar;   //获取状态栏
     first_statusLabel = new QLabel();     //新建标签
     first_statusLabel->setMinimumSize(150,20); //设置标签最小尺寸
     first_statusLabel->setFrameShape(QFrame::WinPanel); //设置标签形状
@@ -227,19 +227,31 @@ void MainWin::on_actionPaste_V_triggered()
 void MainWin::on_actionSearch_triggered()
 {
     //新建一个对话框,用于查找操作,this 表明它的父窗口是 MainWindow。
-    QDialog *findDlg = new QDialog(this);
+    findDlg = new QDialog(this);
     //设置对话框的标题
     findDlg->setWindowTitle(tr("Search"));
     //将行编辑器加入到新建的查找对话框中
     find_textLineEdit = new QLineEdit(findDlg);
      //加入一个“查找下一个”的按钮
-    QPushButton *findBtn = new QPushButton(tr("Search the next"),findDlg);
+    findBtn = new QPushButton(tr("Search the next"),findDlg);
     //新建一个垂直布局管理器,并将行编辑器和按钮加入其中
-    QVBoxLayout *layout = new QVBoxLayout(findDlg);
-    layout->addWidget(find_textLineEdit);
-    layout->addWidget(findBtn);
+    QVBoxLayout layout(findDlg);
+    layout.addWidget(find_textLineEdit);
+    layout.addWidget(findBtn);
     findDlg->show();    //显示对话框
     //设置“查找下一个”按钮的单击事件和其槽函数的关联
     connect(findBtn, SIGNAL(clicked()), this, SLOT(show_findText()));
     second_statusLabel->setText(tr("Searching..."));//状态栏显示正在查找
+}
+
+// 关于
+void MainWin::on_actionAbout_B_triggered()
+{
+    QMessageBox::about(this, tr("About openFim"), tr("opensource app: openFim \nVersion: 0.9\n Author: Frank Liu \n time: 2017.10.27"));
+}
+
+// 帮助
+void MainWin::on_actionHelp_P_triggered()
+{
+    QMessageBox::about(this, tr("maybe help you"), tr("This is an open source simple notebook application, you can simply complete the text to create, open, edit, save, find and other operations, support for mouse operations and shortcuts to help you easily work and study!   ——Frank"));
 }
